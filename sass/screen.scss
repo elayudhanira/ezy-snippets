@@ -83,9 +83,11 @@ $warning : #CAED5C; // custom for warning element
 $muteddark : #666666; // custom dark grey
 $mutedlight:#d4d4d4;  // custom light grey
 
-$twitter : #3fa9f5;  // twitter color
-$facebook : #0071bc; // fb color
-$gplus : #ad1e29;  // gplus color
+$twitter : #009AD8;  // twitter color
+$facebook : #344E8B; // fb color
+$linkedin : #106FA4; // linkedin color
+$gplus : #C9432D;  // gplus color\
+$instagram :#bf8361;
 
 $greyborder : darken(#fff, 10%);  // border used in whole pages
 
@@ -387,6 +389,46 @@ body{
 		}
 	}
 
+}
+
+.nav-toggle{
+	span, span:before, span:after{
+		cursor: pointer;
+		@include border-radius(1px);
+		height: 2px; width: 20px;
+		background: rgba($theme,1);
+		display: block; position: absolute;
+		content: '';
+		@include transition(all 0.5s);
+		@include transition-timing-function(cubic-bezier(0.5, -0.5, 0.5, 1.5));
+		@include transform-origin(center);
+	}
+	span:before{top: -7px;}
+	span:after{top:7px;}
+}
+
+.mobile-menu-anim{
+	padding: 10px;
+	background: #fff;
+	@include transition(left 0.2s);
+	@include respond-to(handhelds){display: block;}
+	a{
+		color: $theme;width: 20px;height: 12px;display: block;padding-top: 8px;
+	}
+	&.menu-shown{
+		left: 280px;
+		.nav-toggle{
+			span:before{
+				@include transform(translateY(7px) rotate(135deg));
+			}
+			span:after{
+				@include transform(translateY(-7px) rotate(-135deg));
+			}
+			span{
+				background: rgba($theme,0);
+			}
+		}
+	}
 }
 
 #header.fixed{
@@ -756,6 +798,84 @@ figure{
 }
 
 
+// social media icon
+.social-icons, .social-icons-circle{
+	li{
+		a{color: #fff;}
+		&.fb{
+			a{background: $facebook;&:before{background: lighten($facebook,10%);}}
+			a:hover{background: darken($facebook, 10%);&:before{background: $facebook;}}
+		}
+		&.tw{
+			a{background: $twitter;&:before{background: lighten($twitter,10%);}}
+			a:hover{background: darken($twitter, 10%);&:before{background: $twitter;}}
+		}
+		&.linkedin{
+			a{background: $linkedin;&:before{background: lighten($linkedin,10%);}}
+			a:hover{background: darken($linkedin, 10%);&:before{background: $linkedin;}}
+		}
+		&.gplus{
+			a{background: $gplus;&:before{background: lighten($gplus,10%);}}
+			a:hover{background: darken($gplus, 10%);&:before{background: $gplus;}}
+		}
+		&.instagram{
+			a{background: $instagram; &:before{background: lighten($instagram, 10%);}}
+			a:hover{background: darken($instagram, 10%);&:before{background: $instagram;}}
+		}
+	}
+}
+.social-icons{
+	li{
+		display: inline-block;
+		a{
+			display: block;
+			position: relative;
+			color: #fff;
+			padding: 10px 30px 10px 60px;
+			overflow: hidden;
+			@include border-radius(3px);
+			font-size: 0.9em;
+			@include transition(all 0.5s);
+			&:before{
+				position: absolute;
+				left: 0px;top: 0px;
+				height: 100%;
+				padding: 10px 15px;
+				@include transition(all 0.5s);
+				@include box-sizing(border-box);
+				@include border-top-left-radius(3px);
+				@include border-bottom-left-radius(3px);
+			}
+
+			&:hover{
+				padding-left:70px; padding-right: 20px;
+				&:before{padding: 10px 20px;}
+			}
+		}
+		
+	}
+}
+
+.social-icons-circle{
+	li{
+		display: block;
+		float: left;
+		margin-right: 5px;
+		a{
+			display: block;
+			width: 42px; height: 42px;
+			position: relative;
+			@include border-radius(50%);
+			span{
+				position: absolute;
+				display: block;
+				left: 50%;
+				@include transform(translateX(-50%) translateY(-50%));
+				top:50%;
+			}
+		}
+	}
+}
 
 // font color (fc)
 .fc-muted{color:$muteddark;}

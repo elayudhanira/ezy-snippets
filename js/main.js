@@ -189,3 +189,10 @@ $(window).scroll(function(){
 		}
 	}
 });
+
+$(document).on('click','.mobile-menu-anim a',function(e){
+   // $('#app-aside').toggleClass('open');
+    $(this).parent().toggleClass('menu-shown');
+    e.preventDefault();
+    return false;
+});
